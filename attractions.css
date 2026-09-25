@@ -1,0 +1,52 @@
+.guide-page { background: #f8f3e9; }
+.guide-hero { min-height: 520px; color: #fff; background: radial-gradient(circle at 15% 25%, rgba(231,164,92,.35), transparent 30%), linear-gradient(145deg, #1a3533, #102524); }
+.guide-hero .topbar { color: #fff; }
+.back-link { padding: 9px 15px; border: 1px solid rgba(255,255,255,.35); border-radius: 99px; font-size: .86rem; }
+.guide-title { padding-top: 80px; }
+.guide-title h1 { margin: 0; font: 700 clamp(4rem, 8vw, 7rem)/.85 "Frank Ruhl Libre", serif; letter-spacing: -.055em; }
+.guide-title h1 em { color: #f2aa62; font-style: normal; }
+.guide-title > p:last-child { max-width: 560px; margin: 28px 0 0; color: rgba(255,255,255,.72); font-size: 1.05rem; }
+.guide-main { padding-block: 70px 100px; }
+.guide-toolbar { display: grid; grid-template-columns: auto minmax(240px, 1fr) auto; align-items: center; gap: 18px; padding: 18px 22px; border: 1px solid var(--line); border-radius: 20px; background: #fff; }
+.guide-toolbar label { font-weight: 800; }
+.guide-toolbar input { width: 100%; border: 0; outline: 0; padding: 12px 14px; border-radius: 12px; color: var(--ink); background: var(--cream); font: inherit; }
+.guide-toolbar span { color: var(--ink-soft); font-size: .82rem; }
+.region-nav { display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0 54px; }
+.region-filter { border: 1px solid var(--line); padding: 8px 14px; border-radius: 99px; color: var(--ink-soft); background: transparent; cursor: pointer; }
+.region-filter.active { color: #fff; border-color: var(--ink); background: var(--ink); }
+.region-group { margin-top: 74px; }
+.region-title { display: flex; align-items: end; justify-content: space-between; gap: 20px; margin-bottom: 22px; padding-bottom: 16px; border-bottom: 1px solid var(--line); }
+.region-title h2 { margin: 0; font: 700 3.1rem/1 "Frank Ruhl Libre", serif; }
+.region-title span { color: var(--ink-soft); font-size: .82rem; }
+.attraction-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.attraction-card { scroll-margin-top: 20px; padding: 28px; border: 1px solid var(--line); border-radius: 24px; background: #fff; transition: box-shadow .25s, border-color .25s; }
+.attraction-card:target { border-color: var(--terracotta); box-shadow: 0 0 0 4px rgba(191,90,60,.12), var(--shadow); }
+.attraction-card header { display: flex; align-items: start; justify-content: space-between; gap: 20px; }
+.attraction-card h3 { margin: 0; font-size: 1.45rem; letter-spacing: -.03em; }
+.site-type { flex: 0 0 auto; padding: 5px 9px; border-radius: 99px; color: #765238; background: #f6e2ca; font-size: .7rem; font-weight: 800; }
+.attraction-card > p { margin: 18px 0; color: var(--ink-soft); }
+.fact-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.fact { padding: 12px; border-radius: 13px; background: var(--cream); }
+.fact small { display: block; margin-bottom: 3px; color: var(--ink-soft); }
+.fact strong { font-size: .9rem; }
+.card-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.card-action { display: inline-flex; padding: 8px 12px; border-radius: 99px; color: #fff; background: var(--terracotta); font-size: .78rem; font-weight: 800; }
+.card-action.secondary { color: var(--ink); background: var(--cream); }
+.guide-note { margin-top: 50px; padding: 20px; border-right: 3px solid var(--apricot); color: var(--ink-soft); background: rgba(255,255,255,.6); }
+.guide-footer { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-block: 34px; border-top: 1px solid var(--line); color: var(--ink-soft); }
+.guide-footer > a { color: var(--terracotta); text-decoration: underline; }
+.empty-state { padding: 70px 20px; text-align: center; color: var(--ink-soft); }
+
+@media (max-width: 720px) {
+  .guide-hero { min-height: 480px; }
+  .guide-title { padding-top: 72px; }
+  .guide-title h1 { font-size: 4.4rem; }
+  .guide-toolbar { grid-template-columns: 1fr; gap: 8px; }
+  .guide-toolbar span { display: none; }
+  .region-nav { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 7px; }
+  .region-filter { flex: 0 0 auto; }
+  .attraction-grid { grid-template-columns: 1fr; }
+  .region-title h2 { font-size: 2.5rem; }
+  .fact-row { grid-template-columns: 1fr; }
+  .guide-footer { flex-direction: column; align-items: flex-start; }
+}

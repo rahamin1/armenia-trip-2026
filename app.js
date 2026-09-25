@@ -1,12 +1,26 @@
+const attractionSlugs = {
+  "Republic Square": "republic-square", "Northern Avenue": "northern-avenue", "Opera & Freedom Square": "opera", "Cascade": "cascade", "Saryan Street": "saryan-street",
+  "GUM Market": "gum-market", "Matenadaran": "matenadaran", "הגלריה הלאומית": "national-gallery", "Bookinist": "bookinist",
+  "Garni Temple": "garni", "Symphony of Stones": "symphony-of-stones", "Geghard": "geghard", "Charents Arch": "charents-arch", "Etchmiadzin": "etchmiadzin",
+  "Lake Sevan": "lake-sevan", "Sevanavank": "sevanavank", "Old Dilijan": "old-dilijan", "Haghartsin": "haghartsin", "Goshavank": "goshavank",
+  "Hayravank": "hayravank", "Noratus Cemetery": "noratus", "Orbelian Caravanserai": "orbelian-caravanserai", "Selim Pass": "selim-pass", "Yeghegis & Zorats Church": "yeghegis-zorats",
+  "Shaki Waterfall": "shaki-waterfall", "Wings of Tatev": "wings-of-tatev", "Halidzor Viewpoint": "halidzor-viewpoint", "Tatev Monastery": "tatev",
+  "Old Khndzoresk": "khndzoresk", "Noravank Canyon": "noravank", "Areni": "areni", "Khor Virap": "khor-virap"
+};
+
 const days = [
   {
-    day: 1, weekday: "שלישי", date: "6.10", title: "נוחתים בירוואן",
-    subtitle: "יום מעבר רגוע, צ׳ק־אין והיכרות ראשונה עם העיר.", city: "ירוואן",
-    drive: "נסיעות מקומיות", duration: "יום קל", directions: "https://www.google.com/maps/dir/?api=1&origin=Zvartnots+International+Airport&destination=Hin+Yerevantsi+Hotel&travelmode=driving", stops: [
+    day: 1, weekday: "שלישי", date: "6.10", title: "נוחתים ומכירים את ירוואן",
+    subtitle: "אחרי הצ׳ק־אין: מסלול ערב קל בין הכיכרות, האדריכלות והתצפית העירונית.", city: "ירוואן",
+    drive: "נסיעה מהשדה + כ־3 ק״מ הליכה", duration: "ערב של 2.5–3 שעות", directions: "https://www.google.com/maps/dir/?api=1&origin=Hin+Yerevantsi+Hotel&destination=Saryan+Street+Yerevan&waypoints=Republic+Square+Yerevan%7CNorthern+Avenue+Yerevan%7CYerevan+Opera+Theatre%7CCascade+Complex+Yerevan&travelmode=walking", stops: [
       ["טיסה לתחנת הביניים", "תל אביב → לרנקה · 06:30–07:40"],
       ["טיסה לארמניה", "לרנקה → ירוואן · 11:00–13:50"],
       ["צ׳ק־אין", "Hin Yerevantsi Hotel · לילה 1 מתוך 3"],
-      ["ערב חופשי בירוואן", "טיול רגלי וארוחת ערב קרובה למלון"]
+      ["Republic Square", "להתחיל באור האחרון ולהתרשם מאבן הטוף הוורודה"],
+      ["Northern Avenue", "טיילת נעימה שמחברת בין הכיכר לבית האופרה"],
+      ["Opera & Freedom Square", "עצירה קצרה סביב בית האופרה ואגם הברבורים"],
+      ["Cascade", "להגיע לקראת שקיעה; אפשר לעלות רק חלק מהמדרגות"],
+      ["Saryan Street", "לסיים בארוחת ערב או כוס יין באזור התוסס"]
     ], map: "Yerevan Armenia"
   },
   {
@@ -122,7 +136,11 @@ function renderDay(index) {
       <h4>תחנות היום</h4>
       <div class="day-meta"><span>${item.drive}</span><span>${item.duration}</span></div>
       <ol class="stop-list">
-        ${item.stops.map(([name, note]) => `<li><strong>${name}</strong><span>${note}</span></li>`).join("")}
+        ${item.stops.map(([name, note]) => {
+          const slug = attractionSlugs[name];
+          const label = slug ? `<a class="site-link" href="attractions.html#${slug}">${name}<span aria-hidden="true">↗</span></a>` : name;
+          return `<li><strong>${label}</strong><span>${note}</span></li>`;
+        }).join("")}
       </ol>
       <div class="map-actions">
         <a class="map-button" target="_blank" rel="noreferrer" href="${item.directions}">מסלול מלא במפות</a>

@@ -115,6 +115,8 @@ button { font: inherit; }
 .stop-list li:last-child { border-right-color: transparent; }
 .stop-list strong { display: block; font-size: 1.06rem; }
 .stop-list span { color: var(--ink-soft); font-size: .9rem; }
+.site-link { display: inline-flex; align-items: center; gap: 7px; color: var(--ink); text-decoration: underline; text-decoration-color: rgba(191,90,60,.45); text-underline-offset: 4px; }
+.site-link > span { color: var(--terracotta); font-size: .78rem; text-decoration: none; }
 .map-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
 .map-button { display: inline-flex; padding: 10px 16px; border-radius: 99px; color: #fff; background: var(--terracotta); font-weight: 700; font-size: .86rem; }
 .map-button.secondary { color: var(--ink); background: var(--cream); }
