@@ -25,7 +25,7 @@
 .attraction-card h3 { margin: 0; font-size: 1.45rem; letter-spacing: -.03em; }
 .site-type { flex: 0 0 auto; padding: 5px 9px; border-radius: 99px; color: #765238; background: #f6e2ca; font-size: .7rem; font-weight: 800; }
 .attraction-card > p { margin: 18px 0; color: var(--ink-soft); }
-.fact-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.fact-row { display: grid; grid-template-columns: .8fr .8fr 1.4fr; gap: 10px; }
 .fact { padding: 12px; border-radius: 13px; background: var(--cream); }
 .fact small { display: block; margin-bottom: 3px; color: var(--ink-soft); }
 .fact strong { font-size: .9rem; }
@@ -33,6 +33,7 @@
 .card-action { display: inline-flex; padding: 8px 12px; border-radius: 99px; color: #fff; background: var(--terracotta); font-size: .78rem; font-weight: 800; }
 .card-action.secondary { color: var(--ink); background: var(--cream); }
 .guide-note { margin-top: 50px; padding: 20px; border-right: 3px solid var(--apricot); color: var(--ink-soft); background: rgba(255,255,255,.6); }
+.guide-note a { color: var(--terracotta); text-decoration: underline; }
 .guide-footer { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-block: 34px; border-top: 1px solid var(--line); color: var(--ink-soft); }
 .guide-footer > a { color: var(--terracotta); text-decoration: underline; }
 .empty-state { padding: 70px 20px; text-align: center; color: var(--ink-soft); }

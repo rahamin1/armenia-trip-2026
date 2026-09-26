@@ -33,6 +33,16 @@ const attractions = [
   { id:"khor-virap", region:"אררט", name:"חור ויראפ", type:"מנזר ותצפית", text:"מנזר המזוהה עם סיפורו של גרגורי המאיר, מול אחת התצפיות האיקוניות ביותר להר אררט. אפשר לרדת בסולם אל הבור ההיסטורי.", time:"שעה–שעה וחצי", tip:"הראוּת לאררט טובה לעיתים קרובות יותר בבוקר, אך שווה לעצור גם אחר הצהריים בדרך לירוואן.", map:"Khor Virap Monastery", source:"https://armenia.travel/hy/destination/khor-virap-monastery/" }
 ];
 
+const estimatedTemps = {
+  "republic-square":"13°–22°", "northern-avenue":"13°–22°", "opera":"12°–21°", "cascade":"10°–19°", "saryan-street":"12°–20°",
+  "gum-market":"12°–22°", "matenadaran":"11°–21°", "national-gallery":"12°–22°", "bookinist":"12°–22°",
+  "garni":"9°–20°", "symphony-of-stones":"8°–19°", "geghard":"6°–16°", "charents-arch":"7°–17°", "etchmiadzin":"11°–22°",
+  "lake-sevan":"4°–13°", "sevanavank":"3°–12°", "old-dilijan":"7°–16°", "haghartsin":"5°–14°", "goshavank":"6°–15°",
+  "hayravank":"4°–13°", "noratus":"5°–15°", "orbelian-caravanserai":"2°–11°", "selim-pass":"1°–9°", "yeghegis-zorats":"6°–17°",
+  "shaki-waterfall":"8°–19°", "wings-of-tatev":"5°–15°", "halidzor-viewpoint":"5°–15°", "tatev":"4°–14°", "khndzoresk":"5°–15°",
+  "noravank":"8°–20°", "areni":"9°–21°", "khor-virap":"10°–23°"
+};
+
 const regionOrder = ["ירוואן", "קוטאיק", "ארמאוויר", "אגם סוואן", "טאבוש", "גגהרקוניק", "ואיוטס דזור", "סיוניק", "אררט"];
 const root = document.querySelector("#attractions-list");
 const nav = document.querySelector("#region-nav");
@@ -58,7 +68,7 @@ function render() {
       <article class="attraction-card" id="${item.id}">
         <header><h3>${item.name}</h3><span class="site-type">${item.type}</span></header>
         <p>${item.text}</p>
-        <div class="fact-row"><div class="fact"><small>כמה זמן</small><strong>${item.time}</strong></div><div class="fact"><small>טיפ למסלול</small><strong>${item.tip}</strong></div></div>
+        <div class="fact-row"><div class="fact"><small>טמפרטורה משוערת</small><strong>${estimatedTemps[item.id]} · שעות היום</strong></div><div class="fact"><small>כמה זמן</small><strong>${item.time}</strong></div><div class="fact"><small>טיפ למסלול</small><strong>${item.tip}</strong></div></div>
         <div class="card-actions"><a class="card-action" target="_blank" rel="noreferrer" href="${mapUrl(item.map)}">פתיחה במפות</a>${item.source ? `<a class="card-action secondary" target="_blank" rel="noreferrer" href="${item.source}">מקור רשמי</a>` : ""}</div>
       </article>`).join("")}</div></section>`;
   }).join("");

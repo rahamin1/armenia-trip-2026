@@ -207,10 +207,10 @@ nav.querySelectorAll("a").forEach(link => link.addEventListener("click", () => {
 }));
 
 const weatherStops = [
-  { city: "ירוואן", date: "2026-10-06", label: "6–8.10", lat: 40.1872, lon: 44.5152 },
-  { city: "דיליג׳אן", date: "2026-10-09", label: "9.10", lat: 40.7408, lon: 44.8636 },
-  { city: "יגגנאדזור", date: "2026-10-10", label: "10.10", lat: 39.7639, lon: 45.3324 },
-  { city: "גוריס", date: "2026-10-11", label: "11.10", lat: 39.5078, lon: 46.3387 }
+  { city: "ירוואן", date: "2026-10-06", label: "6–8.10", lat: 40.1872, lon: 44.5152, estimate: "11°–22°" },
+  { city: "דיליג׳אן", date: "2026-10-09", label: "9.10", lat: 40.7408, lon: 44.8636, estimate: "7°–16°" },
+  { city: "יגגנאדזור", date: "2026-10-10", label: "10.10", lat: 39.7639, lon: 45.3324, estimate: "8°–20°" },
+  { city: "גוריס", date: "2026-10-11", label: "11.10", lat: 39.5078, lon: 46.3387, estimate: "5°–16°" }
 ];
 
 const weatherLabels = {
@@ -232,17 +232,21 @@ async function loadWeather() {
       const data = await response.json();
       const index = data.daily.time.indexOf(stop.date);
       if (index === -1) return null;
-      return { ...stop, code: data.daily.weather_code[index], max: Math.round(data.daily.temperature_2m_max[index]), min: Math.round(data.daily.temperature_2m_min[index]), rain: data.daily.precipitation_probability_max[index] };
+      const max = data.daily.temperature_2m_max[index];
+      const min = data.daily.temperature_2m_min[index];
+      const code = data.daily.weather_code[index];
+      if (!Number.isFinite(max) || !Number.isFinite(min) || !Number.isFinite(code)) return null;
+      return { ...stop, code, max: Math.round(max), min: Math.round(min), rain: data.daily.precipitation_probability_max[index] };
     } catch { return null; }
   }));
 
   grid.innerHTML = cards.map((forecast, index) => {
     const stop = weatherStops[index];
-    if (!forecast) return `<article class="weather-card pending"><div class="weather-place"><strong>${stop.city}</strong><span>${stop.label}</span></div><div class="weather-main">התחזית טרם זמינה לטווח הזה</div></article>`;
+    if (!forecast) return `<article class="weather-card pending"><div class="weather-place"><strong>${stop.city}</strong><span>${stop.label}</span></div><div class="weather-main"><span class="weather-icon">🌡️</span><div><div class="weather-temp">${stop.estimate}</div><span class="weather-desc">הערכה עונתית לשעות היום</span></div></div></article>`;
     const [icon, description] = weatherLabels[forecast.code] || ["🌡️", "תחזית זמינה"];
-    return `<article class="weather-card"><div class="weather-place"><strong>${forecast.city}</strong><span>${forecast.label}</span></div><div class="weather-main"><span class="weather-icon">${icon}</span><div><div class="weather-temp">${forecast.min}°–${forecast.max}°</div><span class="weather-desc">${description} · ${forecast.rain}% לגשם</span></div></div></article>`;
+    return `<article class="weather-card"><div class="weather-place"><strong>${forecast.city}</strong><span>${forecast.label} · תחזית</span></div><div class="weather-main"><span class="weather-icon">${icon}</span><div><div class="weather-temp">${forecast.min}°–${forecast.max}°</div><span class="weather-desc">${description} · ${Number.isFinite(forecast.rain) ? forecast.rain : "—"}% לגשם</span></div></div></article>`;
   }).join("");
-  status.textContent = cards.some(Boolean) ? "תחזית עדכנית להיום" : "התחזית תופיע כשהתאריכים ייכנסו לטווח";
+  status.textContent = cards.some(Boolean) ? "תחזית כשזמינה · אחרת הערכה" : "הערכה עונתית לכל התחנות";
 }
 
 loadWeather();
