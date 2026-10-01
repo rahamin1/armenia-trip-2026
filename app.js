@@ -206,12 +206,50 @@ nav.querySelectorAll("a").forEach(link => link.addEventListener("click", () => {
   menuButton.setAttribute("aria-expanded", "false");
 }));
 
-const weatherStops = [
-  { city: "ירוואן", date: "2026-10-06", label: "6–8.10", lat: 40.1872, lon: 44.5152, estimate: "11°–22°" },
-  { city: "דיליג׳אן", date: "2026-10-09", label: "9.10", lat: 40.7408, lon: 44.8636, estimate: "7°–16°" },
-  { city: "יגגנאדזור", date: "2026-10-10", label: "10.10", lat: 39.7639, lon: 45.3324, estimate: "8°–20°" },
-  { city: "גוריס", date: "2026-10-11", label: "11.10", lat: 39.5078, lon: 46.3387, estimate: "5°–16°" }
-];
+const weatherLocations = {
+  telAviv: { city: "תל אביב", lat: 32.0853, lon: 34.7818, estimate: "21°–29°" },
+  yerevan: { city: "ירוואן", lat: 40.1872, lon: 44.5152, estimate: "11°–22°" },
+  dilijan: { city: "דיליג׳אן", lat: 40.7408, lon: 44.8636, estimate: "7°–16°" },
+  yeghegnadzor: { city: "יגגנאדזור", lat: 39.7639, lon: 45.3324, estimate: "8°–20°" },
+  goris: { city: "גוריס", lat: 39.5078, lon: 46.3387, estimate: "5°–16°" }
+};
+
+const sleepLocations = {
+  "2026-10-06": "yerevan", "2026-10-07": "yerevan", "2026-10-08": "yerevan",
+  "2026-10-09": "dilijan", "2026-10-10": "yeghegnadzor", "2026-10-11": "goris",
+  "2026-10-12": "yerevan"
+};
+
+function dateKey(date) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
+function addDays(date, amount) {
+  const next = new Date(date);
+  next.setDate(next.getDate() + amount);
+  return next;
+}
+
+function shortDateLabel(date) {
+  const weekdays = ["א׳", "ב׳", "ג׳", "ד׳", "ה׳", "ו׳", "ש׳"];
+  return `${weekdays[date.getDay()]} · ${date.getDate()}.${date.getMonth() + 1}`;
+}
+
+function nextWeatherDays(referenceDate = new Date()) {
+  const today = new Date(referenceDate);
+  today.setHours(12, 0, 0, 0);
+  const tripStart = new Date(2026, 9, 6, 0, 0, 0);
+  const beforeTrip = today < tripStart;
+  return Array.from({ length: 4 }, (_, index) => {
+    const date = addDays(today, index);
+    const key = dateKey(date);
+    const locationKey = beforeTrip ? "telAviv" : (sleepLocations[key] || "telAviv");
+    return { ...weatherLocations[locationKey], date: key, label: shortDateLabel(date) };
+  });
+}
 
 const weatherLabels = {
   0: ["☀️", "בהיר"], 1: ["🌤️", "בהיר לרוב"], 2: ["⛅", "מעונן חלקית"], 3: ["☁️", "מעונן"],
@@ -224,9 +262,10 @@ const weatherLabels = {
 async function loadWeather() {
   const grid = document.querySelector("#weather-grid");
   const status = document.querySelector("#weather-status");
+  const weatherStops = nextWeatherDays();
   const cards = await Promise.all(weatherStops.map(async stop => {
     try {
-      const url = `https://api.open-meteo.com/v1/forecast?latitude=${stop.lat}&longitude=${stop.lon}&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=auto&forecast_days=16`;
+      const url = `https://api.open-meteo.com/v1/forecast?latitude=${stop.lat}&longitude=${stop.lon}&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=auto&forecast_days=7`;
       const response = await fetch(url);
       if (!response.ok) throw new Error("weather unavailable");
       const data = await response.json();
@@ -242,11 +281,13 @@ async function loadWeather() {
 
   grid.innerHTML = cards.map((forecast, index) => {
     const stop = weatherStops[index];
-    if (!forecast) return `<article class="weather-card pending"><div class="weather-place"><strong>${stop.city}</strong><span>${stop.label}</span></div><div class="weather-main"><span class="weather-icon">🌡️</span><div><div class="weather-temp">${stop.estimate}</div><span class="weather-desc">הערכה עונתית לשעות היום</span></div></div></article>`;
+    if (!forecast) return `<article class="weather-card pending"><div class="weather-place"><strong>${stop.city}</strong><span>${stop.label}</span></div><div class="weather-main"><span class="weather-icon">🌡️</span><div><div class="weather-temp">${stop.estimate}</div><span class="weather-desc">הערכה · גשם: —</span></div></div></article>`;
     const [icon, description] = weatherLabels[forecast.code] || ["🌡️", "תחזית זמינה"];
-    return `<article class="weather-card"><div class="weather-place"><strong>${forecast.city}</strong><span>${forecast.label} · תחזית</span></div><div class="weather-main"><span class="weather-icon">${icon}</span><div><div class="weather-temp">${forecast.min}°–${forecast.max}°</div><span class="weather-desc">${description} · ${Number.isFinite(forecast.rain) ? forecast.rain : "—"}% לגשם</span></div></div></article>`;
+    return `<article class="weather-card"><div class="weather-place"><strong>${forecast.city}</strong><span>${forecast.label}</span></div><div class="weather-main"><span class="weather-icon">${icon}</span><div><div class="weather-temp">${forecast.min}°–${forecast.max}°</div><span class="weather-desc">${Number.isFinite(forecast.rain) ? forecast.rain : "—"}% גשם · ${description}</span></div></div></article>`;
   }).join("");
-  status.textContent = cards.some(Boolean) ? "תחזית כשזמינה · אחרת הערכה" : "הערכה עונתית לכל התחנות";
+  const firstCity = weatherStops[0].city;
+  const oneCity = weatherStops.every(stop => stop.city === firstCity);
+  status.textContent = oneCity ? firstCity : "לפי יעד הלינה";
 }
 
 loadWeather();
