@@ -95,8 +95,8 @@ const days = [
     day: 8, weekday: "שלישי", date: "13.10", title: "חוזרים הביתה",
     subtitle: "יציאה מוקדמת לשדה, קונקשן בלרנקה ונחיתה אחר הצהריים.", city: "תל אביב",
     drive: "כ־20 דקות לשדה", duration: "יום טיסות", directions: "https://www.google.com/maps/dir/?api=1&origin=Azoyan+Guest+House&destination=Zvartnots+International+Airport&travelmode=driving", stops: [
-      ["יציאה לשדה התעופה", "יש לקבוע שעת איסוף לאחר אימות הכרטיס"],
-      ["ירוואן → לרנקה", "שעת יציאה משוערת 08:10 · דורש אימות"],
+      ["יציאה לשדה התעופה", "טיסת 3F 871 יוצאת ב־09:10 · מומלץ להגיע מוקדם"],
+      ["ירוואן → לרנקה", "09:10–10:00 · 3F 871 · מאושר"],
       ["המתנה בלרנקה", "זמן טוב לארוחה לפני הטיסה האחרונה"],
       ["לרנקה → תל אביב", "15:20–16:25"]
     ], map: "Zvartnots International Airport"
@@ -178,7 +178,6 @@ async function loadItineraryWeather(item) {
 }
 
 const checklist = [
-  ["לאמת את טיסת החזור", "שעת היציאה מירוואן אינה ברורה בקובץ"],
   ["להזמין רכב או נהג", "לוודא התאמה לדרך ההררית ולכיסוי הביטוחי"],
   ["לרכוש ביטוח נסיעות", "כולל ביטול, מטען ופעילות מתוכננת"],
   ["להזמין Wings of Tatev", "לבדוק ימי פעילות ושעות באוקטובר"],
@@ -242,14 +241,16 @@ document.querySelector("#hotel-list").innerHTML = hotels.map((hotel, index) => `
   </article>`).join("");
 
 const checklistRoot = document.querySelector("#checklist-items");
-const saved = JSON.parse(localStorage.getItem("armenia-checklist") || "[]");
+const checklistStorageKey = "armenia-checklist-v2";
+const legacyChecklist = JSON.parse(localStorage.getItem("armenia-checklist") || "[]");
+const saved = JSON.parse(localStorage.getItem(checklistStorageKey) || JSON.stringify(legacyChecklist.slice(1)));
 
 function updateProgress() {
   const checks = [...checklistRoot.querySelectorAll("input")];
   const completed = checks.filter(input => input.checked).length;
   document.querySelector("#progress-label").textContent = `${completed} מתוך ${checks.length} הושלמו`;
   document.querySelector("#progress-bar").style.width = `${(completed / checks.length) * 100}%`;
-  localStorage.setItem("armenia-checklist", JSON.stringify(checks.map(input => input.checked)));
+  localStorage.setItem(checklistStorageKey, JSON.stringify(checks.map(input => input.checked)));
 }
 
 checklist.forEach(([title, note], index) => {
