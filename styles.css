@@ -181,6 +181,11 @@ button { font: inherit; }
 .check-item:has(input:checked) .check-text { opacity: .48; text-decoration: line-through; }
 .reset-button { margin-top: 24px; border: 0; padding: 0; color: rgba(255,255,255,.58); background: transparent; cursor: pointer; text-decoration: underline; }
 
+.back-to-top { position: fixed; left: 22px; bottom: 22px; z-index: 20; display: flex; align-items: center; gap: 8px; padding: 10px 14px; border: 1px solid rgba(255,255,255,.45); border-radius: 99px; color: #fff; background: rgba(23,43,42,.9); box-shadow: 0 10px 30px rgba(23,43,42,.24); opacity: 0; pointer-events: none; transform: translateY(12px); transition: opacity .2s, transform .2s; backdrop-filter: blur(8px); }
+.back-to-top.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+.back-to-top span { font-size: 1.15rem; line-height: 1; }
+.back-to-top strong { font-size: .75rem; }
+
 .footer { display: flex; justify-content: space-between; align-items: flex-end; gap: 30px; padding-block: 38px; color: var(--ink-soft); font-size: .82rem; }
 .footer p { margin: 0; }
 .source-links { max-width: 520px; display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 6px 14px; }
@@ -247,6 +252,8 @@ button { font: inherit; }
   .footer { flex-direction: column; align-items: flex-start; }
   .source-links { justify-content: flex-start; }
   .source-links span { text-align: right; }
+  .back-to-top { left: 14px; bottom: 14px; width: 44px; height: 44px; justify-content: center; padding: 0; }
+  .back-to-top strong { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 }
 
 @media (prefers-reduced-motion: reduce) {

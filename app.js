@@ -312,12 +312,12 @@ function shortDateLabel(date) {
 function nextWeatherDays(referenceDate = new Date()) {
   const today = new Date(referenceDate);
   today.setHours(12, 0, 0, 0);
-  const tripStart = new Date(2026, 9, 6, 0, 0, 0);
-  const beforeTrip = today < tripStart;
+  const tripStart = new Date(2026, 9, 6, 12, 0, 0);
+  const displayStart = today < tripStart ? tripStart : today;
   return Array.from({ length: 4 }, (_, index) => {
-    const date = addDays(today, index);
+    const date = addDays(displayStart, index);
     const key = dateKey(date);
-    const locationKey = beforeTrip ? "telAviv" : (sleepLocations[key] || "telAviv");
+    const locationKey = sleepLocations[key] || "telAviv";
     return { ...weatherLocations[locationKey], date: key, label: shortDateLabel(date) };
   });
 }
@@ -336,7 +336,7 @@ async function loadWeather() {
   const weatherStops = nextWeatherDays();
   const cards = await Promise.all(weatherStops.map(async stop => {
     try {
-      const url = `https://api.open-meteo.com/v1/forecast?latitude=${stop.lat}&longitude=${stop.lon}&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=auto&forecast_days=7`;
+      const url = `https://api.open-meteo.com/v1/forecast?latitude=${stop.lat}&longitude=${stop.lon}&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=auto&forecast_days=16`;
       const response = await fetch(url);
       if (!response.ok) throw new Error("weather unavailable");
       const data = await response.json();
@@ -362,3 +362,10 @@ async function loadWeather() {
 }
 
 loadWeather();
+
+const backToTop = document.querySelector(".back-to-top");
+function updateBackToTop() {
+  backToTop.classList.toggle("visible", window.scrollY > 560);
+}
+window.addEventListener("scroll", updateBackToTop, { passive: true });
+updateBackToTop();
