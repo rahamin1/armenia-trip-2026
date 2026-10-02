@@ -111,6 +111,72 @@ const hotels = [
   { name: "Azoyan Guest House", city: "ירוואן", dates: "12–13 באוקטובר", nights: "לילה אחד", price: 289 }
 ];
 
+const itineraryWeatherLocations = {
+  yerevan: { city: "ירוואן", lat: 40.1872, lon: 44.5152, estimate: "11°–22°" },
+  garni: { city: "גארני וגגהארד", lat: 40.1124, lon: 44.7279, estimate: "8°–19°" },
+  echmiadzin: { city: "אצ׳מיאדזין", lat: 40.1656, lon: 44.2946, estimate: "10°–21°" },
+  sevan: { city: "אגם סוואן", lat: 40.5472, lon: 44.9417, estimate: "5°–14°" },
+  dilijan: { city: "דיליג׳אן", lat: 40.7408, lon: 44.8636, estimate: "7°–16°" },
+  selim: { city: "מעבר סלים", lat: 39.9496, lon: 45.2355, estimate: "2°–11°" },
+  yeghegnadzor: { city: "יגגנאדזור", lat: 39.7639, lon: 45.3324, estimate: "8°–20°" },
+  shaki: { city: "מפל שאקי", lat: 39.5522, lon: 45.9934, estimate: "7°–18°" },
+  tatev: { city: "טאטב", lat: 39.3833, lon: 46.25, estimate: "5°–15°" },
+  goris: { city: "גוריס", lat: 39.5078, lon: 46.3387, estimate: "5°–16°" },
+  areni: { city: "ארני ונוראוונק", lat: 39.7194, lon: 45.1838, estimate: "8°–20°" },
+  khorVirap: { city: "חור ויראפ", lat: 39.8783, lon: 44.5762, estimate: "10°–22°" },
+  telAviv: { city: "תל אביב", lat: 32.0853, lon: 34.7818, estimate: "21°–29°" }
+};
+
+const itineraryWeatherStops = {
+  1: ["yerevan"],
+  2: ["yerevan"],
+  3: ["garni", "echmiadzin", "yerevan"],
+  4: ["sevan", "dilijan"],
+  5: ["sevan", "selim", "yeghegnadzor"],
+  6: ["shaki", "tatev", "goris"],
+  7: ["goris", "areni", "khorVirap"],
+  8: ["yerevan", "telAviv"]
+};
+
+const itineraryForecastCache = new Map();
+
+async function fetchItineraryForecast(stop, date) {
+  const cacheKey = `${stop.lat},${stop.lon}`;
+  if (!itineraryForecastCache.has(cacheKey)) {
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=${stop.lat}&longitude=${stop.lon}&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=auto&forecast_days=16`;
+    itineraryForecastCache.set(cacheKey, fetch(url).then(response => {
+      if (!response.ok) throw new Error("weather unavailable");
+      return response.json();
+    }).catch(() => null));
+  }
+  const data = await itineraryForecastCache.get(cacheKey);
+  if (!data?.daily?.time) return null;
+  const [day, month] = date.split(".");
+  const targetDate = `2026-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
+  const index = data.daily.time.indexOf(targetDate);
+  if (index < 0) return null;
+  return {
+    min: Math.round(data.daily.temperature_2m_min[index]),
+    max: Math.round(data.daily.temperature_2m_max[index]),
+    rain: data.daily.precipitation_probability_max[index],
+    code: data.daily.weather_code[index]
+  };
+}
+
+async function loadItineraryWeather(item) {
+  const root = document.querySelector(`[data-weather-day="${item.day}"]`);
+  if (!root) return;
+  const stops = itineraryWeatherStops[item.day].map(key => itineraryWeatherLocations[key]);
+  const forecasts = await Promise.all(stops.map(stop => fetchItineraryForecast(stop, item.date)));
+  if (!root.isConnected) return;
+  root.innerHTML = stops.map((stop, index) => {
+    const forecast = forecasts[index];
+    if (!forecast) return `<article class="day-weather-card"><div class="day-weather-place"><strong>${stop.city}</strong><span>הערכה</span></div><div class="day-weather-main"><span class="day-weather-icon">🌡️</span><div><div class="day-weather-temp">${stop.estimate}</div><span class="day-weather-rain">סיכוי לגשם: —</span></div></div></article>`;
+    const [icon, description] = weatherLabels[forecast.code] || ["🌡️", "תחזית"];
+    return `<article class="day-weather-card"><div class="day-weather-place"><strong>${stop.city}</strong><span>${description}</span></div><div class="day-weather-main"><span class="day-weather-icon">${icon}</span><div><div class="day-weather-temp">${forecast.min}°–${forecast.max}°</div><span class="day-weather-rain">${Number.isFinite(forecast.rain) ? forecast.rain : "—"}% סיכוי לגשם</span></div></div></article>`;
+  }).join("");
+}
+
 const checklist = [
   ["לאמת את טיסת החזור", "שעת היציאה מירוואן אינה ברורה בקובץ"],
   ["להזמין רכב או נהג", "לוודא התאמה לדרך ההררית ולכיסוי הביטוחי"],
@@ -135,6 +201,10 @@ function renderDay(index) {
     <div class="day-detail">
       <h4>תחנות היום</h4>
       <div class="day-meta"><span>${item.drive}</span><span>${item.duration}</span></div>
+      <section class="day-weather" aria-label="מזג האוויר במקומות המרכזיים ביום זה">
+        <div class="day-weather-head"><strong>מזג האוויר לאורך היום</strong><span>מתעדכן אוטומטית</span></div>
+        <div class="day-weather-grid" data-weather-day="${item.day}"><span>התחזית נטענת…</span></div>
+      </section>
       <ol class="stop-list">
         ${item.stops.map(([name, note]) => {
           const slug = attractionSlugs[name];
@@ -147,6 +217,7 @@ function renderDay(index) {
         <a class="map-button secondary" target="_blank" rel="noreferrer" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.map)}">התחנה המרכזית</a>
       </div>
     </div>`;
+  loadItineraryWeather(item);
 }
 
 days.forEach((item, index) => {

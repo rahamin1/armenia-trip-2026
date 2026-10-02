@@ -92,6 +92,11 @@ button { font: inherit; }
 .weather-desc { display: block; color: rgba(255,255,255,.68); font-size: .72rem; }
 .weather-card.pending { background: rgba(7,25,25,.3); }
 
+.food-section { background: #efe6d6; }
+.food-figure { margin: 0; }
+.food-figure img { width: 100%; display: block; border-radius: var(--radius); box-shadow: var(--shadow); }
+.food-figure figcaption { margin-top: 14px; color: var(--ink-soft); font-size: .82rem; }
+
 .route-section { background: var(--cream); }
 .day-tabs { display: grid; grid-template-columns: repeat(8, 1fr); gap: 8px; margin-bottom: 16px; }
 .day-tab { border: 0; border-radius: 16px; padding: 15px 8px; color: var(--ink-soft); background: rgba(255,255,255,.58); cursor: pointer; transition: .2s; }
@@ -107,6 +112,18 @@ button { font: inherit; }
 .day-detail h4 { margin: 0 0 24px; font-size: .85rem; color: var(--terracotta); letter-spacing: .08em; }
 .day-meta { display: flex; gap: 8px; flex-wrap: wrap; margin: -8px 0 24px; }
 .day-meta span { padding: 6px 10px; border-radius: 99px; color: var(--ink-soft); background: var(--cream); font-size: .74rem; font-weight: 700; }
+.day-weather { margin: 0 0 28px; padding: 18px; border-radius: 20px; background: var(--cream); }
+.day-weather-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+.day-weather-head strong { font-size: .88rem; }
+.day-weather-head span { color: var(--ink-soft); font-size: .7rem; }
+.day-weather-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.day-weather-card { min-width: 0; padding: 11px 12px; border: 1px solid var(--line); border-radius: 14px; background: #fff; }
+.day-weather-place { display: flex; justify-content: space-between; gap: 6px; color: var(--ink-soft); font-size: .68rem; }
+.day-weather-place strong { overflow: hidden; color: var(--ink); text-overflow: ellipsis; white-space: nowrap; }
+.day-weather-main { display: flex; align-items: center; gap: 7px; margin-top: 8px; }
+.day-weather-icon { font-size: 1.15rem; }
+.day-weather-temp { font-weight: 800; direction: ltr; }
+.day-weather-rain { display: block; color: var(--ink-soft); font-size: .64rem; }
 .stop-list { list-style: none; margin: 0; padding: 0; }
 .stop-list li { position: relative; padding: 0 36px 22px 0; border-right: 1px solid var(--line); }
 .stop-list li::before { content: ""; position: absolute; right: -6px; top: 5px; width: 11px; height: 11px; border-radius: 50%; background: var(--apricot); box-shadow: 0 0 0 5px #fff; }
@@ -217,6 +234,8 @@ button { font: inherit; }
   .day-visual { min-height: 240px; padding: 30px; }
   .day-visual h3 { font-size: 2.6rem; }
   .day-detail { padding: 30px; }
+  .day-weather-grid { grid-template-columns: 1fr 1fr; }
+  .day-weather-card { padding: 10px; }
   .hotel-card { grid-template-columns: 38px 1fr auto; gap: 12px; }
   .hotel-index { font-size: 1.4rem; }
   .hotel-dates { grid-column: 2 / 3; }
