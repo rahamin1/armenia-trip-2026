@@ -1,6 +1,6 @@
 const attractionSlugs = {
   "Republic Square": "republic-square", "Northern Avenue": "northern-avenue", "Opera & Freedom Square": "opera", "Cascade": "cascade", "Saryan Street": "saryan-street",
-  "GUM Market": "gum-market", "Matenadaran": "matenadaran", "הגלריה הלאומית": "national-gallery", "Bookinist": "bookinist",
+  "GUM Market": "gum-market", "Matenadaran": "matenadaran", "National Gallery of Armenia": "national-gallery", "Bookinist": "bookinist",
   "Garni Temple": "garni", "Symphony of Stones": "symphony-of-stones", "Geghard": "geghard", "Charents Arch": "charents-arch", "Etchmiadzin": "etchmiadzin",
   "Lake Sevan": "lake-sevan", "Sevanavank": "sevanavank", "Old Dilijan": "old-dilijan", "Haghartsin": "haghartsin", "Goshavank": "goshavank",
   "Hayravank": "hayravank", "Noratus Cemetery": "noratus", "Orbelian Caravanserai": "orbelian-caravanserai", "Selim Pass": "selim-pass", "Yeghegis & Zorats Church": "yeghegis-zorats",
@@ -10,11 +10,11 @@ const attractionSlugs = {
 
 const days = [
   {
-    day: 1, weekday: "שלישי", date: "6.10", title: "נוחתים ומכירים את ירוואן",
-    subtitle: "אחרי הצ׳ק־אין: מסלול ערב קל בין הכיכרות, האדריכלות והתצפית העירונית.", city: "ירוואן",
+    day: 1, weekday: "שלישי", date: "6.10", title: "נוחתים ומכירים את Yerevan",
+    subtitle: "אחרי הצ׳ק־אין: מסלול ערב קל בין הכיכרות, האדריכלות והתצפית העירונית.", city: "Yerevan",
     drive: "נסיעה מהשדה + כ־3 ק״מ הליכה", duration: "ערב של 2.5–3 שעות", directions: "https://www.google.com/maps/dir/?api=1&origin=Hin+Yerevantsi+Hotel&destination=Saryan+Street+Yerevan&waypoints=Republic+Square+Yerevan%7CNorthern+Avenue+Yerevan%7CYerevan+Opera+Theatre%7CCascade+Complex+Yerevan&travelmode=walking", stops: [
-      ["טיסה לתחנת הביניים", "תל אביב → לרנקה · 06:30–07:40"],
-      ["טיסה לארמניה", "לרנקה → ירוואן · 11:00–13:50"],
+      ["טיסה לתחנת הביניים", "Tel Aviv → Larnaca · 06:30–07:40"],
+      ["טיסה לארמניה", "Larnaca → Yerevan · 11:00–13:50"],
       ["צ׳ק־אין", "Hin Yerevantsi Hotel · לילה 1 מתוך 3"],
       ["Republic Square", "להתחיל באור האחרון ולהתרשם מאבן הטוף הוורודה"],
       ["Northern Avenue", "טיילת נעימה שמחברת בין הכיכר לבית האופרה"],
@@ -24,44 +24,44 @@ const days = [
     ], map: "Yerevan Armenia"
   },
   {
-    day: 2, weekday: "רביעי", date: "7.10", title: "ירוואן של שווקים וספרים",
-    subtitle: "יום עירוני בין אמנות, כתבי יד, שוק מקומי וחנויות ספרים.", city: "ירוואן",
+    day: 2, weekday: "רביעי", date: "7.10", title: "Yerevan של שווקים וספרים",
+    subtitle: "יום עירוני בין אמנות, כתבי יד, שוק מקומי וחנויות ספרים.", city: "Yerevan",
     drive: "הליכה ומוניות בעיר", duration: "יום מלא", directions: "https://www.google.com/maps/dir/?api=1&origin=Hin+Yerevantsi+Hotel&destination=National+Gallery+of+Armenia&waypoints=Matenadaran&travelmode=walking", stops: [
       ["GUM Market", "שוק אוכל מקומי · במסלול רשום 09:00–18:00"],
       ["Matenadaran", "10:00–17:50 · פתוח ג׳–שבת, לפי האתר הרשמי"],
-      ["הגלריה הלאומית", "11:00–18:00 · הקופה נסגרת 45 דקות לפני"],
+      ["National Gallery of Armenia", "11:00–18:00 · הקופה נסגרת 45 דקות לפני"],
       ["Bookinist", "חנות ספרים · יש שני סניפים ושעות שונות"]
     ], map: "GUM Market Yerevan"
   },
   {
     day: 3, weekday: "חמישי", date: "8.10", title: "מקדשים, בזלת ואמונה",
-    subtitle: "טיול כוכב מירוואן אל האתרים שממזרח וממערב לעיר.", city: "ירוואן",
+    subtitle: "טיול כוכב מ־Yerevan אל האתרים שממזרח וממערב לעיר.", city: "Yerevan",
     drive: "כ־3–3.5 שעות נהיגה", duration: "כ־9 שעות עם עצירות", directions: "https://www.google.com/maps/dir/?api=1&origin=Yerevan&destination=Yerevan&waypoints=Garni+Temple%7CSymphony+of+Stones%7CGeghard+Monastery%7CCharents+Arch%7CEtchmiadzin+Cathedral&travelmode=driving", stops: [
       ["Garni Temple", "10:00–21:30 לפי אתר המוזיאון · כרטיס מבוגר 1,500 AMD"],
-      ["Symphony of Stones", "עמודי הבזלת בקניון גארני"],
+      ["Symphony of Stones", "עמודי הבזלת בקניון Garni"],
       ["Geghard", "מנזר המערות החצוב בסלע"],
       ["Charents Arch", "תצפית לכיוון אררט, בהתאם לראוּת"],
       ["Etchmiadzin", "המרכז הרוחני של הכנסייה הארמנית"],
-      ["חזרה לירוואן", "לילה אחרון ב-Hin Yerevantsi Hotel"]
+      ["חזרה ל־Yerevan", "לילה אחרון ב-Hin Yerevantsi Hotel"]
     ], map: "Garni Temple Armenia"
   },
   {
-    day: 4, weekday: "שישי", date: "9.10", title: "אגם סוואן והיערות של דיליג׳אן",
-    subtitle: "יוצאים מירוואן צפונה, דרך האגם הכחול אל העיירה הירוקה.", city: "דיליג׳אן",
+    day: 4, weekday: "שישי", date: "9.10", title: "Lake Sevan והיערות של Dilijan",
+    subtitle: "יוצאים מ־Yerevan צפונה, דרך האגם הכחול אל העיירה הירוקה.", city: "Dilijan",
     drive: "כ־3.5–4 שעות נהיגה", duration: "כ־9 שעות עם עצירות", directions: "https://www.google.com/maps/dir/?api=1&origin=Yerevan&destination=Dilijan&waypoints=Sevanavank%7COld+Dilijan%7CHaghartsin+Monastery%7CGoshavank+Monastery&travelmode=driving", stops: [
       ["Lake Sevan", "עצירה על שפת אחד האגמים הגבוהים בעולם"],
       ["Sevanavank", "המנזר שעל חצי האי ותצפית לאגם"],
       ["Old Dilijan", "רחוב היסטורי, בתי עץ וסדנאות"],
       ["Haghartsin", "מנזר בתוך היער"],
       ["Goshavank", "מתחם מנזר וכפר הררי"],
-      ["צ׳ק־אין בדיליג׳אן", "Amrots Dsegheni · Boutique Castle Stay"]
+      ["צ׳ק־אין ב־Dilijan", "Amrots Dsegheni · Boutique Castle Stay"]
     ], map: "Sevanavank Armenia"
   },
   {
     day: 5, weekday: "שבת", date: "10.10", title: "חוצים את מעבר סלים",
-    subtitle: "יום דרך ארוך ורב־נוף מדיליג׳אן אל עמק יגגיס.", city: "יגגנאדזור",
+    subtitle: "יום דרך ארוך ורב־נוף מ־Dilijan אל עמק Yeghegis.", city: "Yeghegnadzor",
     drive: "כ־5 שעות נהיגה", duration: "כ־10 שעות עם עצירות", directions: "https://www.google.com/maps/dir/?api=1&origin=Dilijan&destination=Yeghegnadzor&waypoints=Hayravank%7CNoratus+Cemetery%7COrbelian+Caravanserai%7CYeghegis&travelmode=driving", stops: [
-      ["Hayravank", "מנזר אבן על שפת אגם סוואן"],
+      ["Hayravank", "מנזר אבן על שפת Lake Sevan"],
       ["Noratus Cemetery", "שדה חצ׳קרים היסטורי"],
       ["Orbelian Caravanserai", "תחנת דרכים עתיקה על דרך המשי"],
       ["Selim Pass", "מעבר הרים · לבדוק מזג אוויר ותנאי דרך"],
@@ -70,61 +70,61 @@ const days = [
     ], map: "Orbelian Caravanserai Armenia"
   },
   {
-    day: 6, weekday: "ראשון", date: "11.10", title: "אל טאטב מעל העננים",
-    subtitle: "מפל, רכבל, תצפיות ומנזר בקצה הדרום.", city: "גוריס",
+    day: 6, weekday: "ראשון", date: "11.10", title: "אל Tatev מעל העננים",
+    subtitle: "מפל, רכבל, תצפיות ומנזר בקצה הדרום.", city: "Goris",
     drive: "כ־4 שעות נהיגה", duration: "כ־9 שעות עם עצירות", directions: "https://www.google.com/maps/dir/?api=1&origin=Yeghegnadzor&destination=Goris&waypoints=Shaki+Waterfall%7CWings+of+Tatev%7CTatev+Monastery&travelmode=driving", stops: [
       ["Shaki Waterfall", "מפל שצורת הזרימה בו עשויה להשתנות"],
       ["Wings of Tatev", "באוקטובר נהוג לפעול 10:00–18:00; כרגע הרכישה המקוונת באתר הרשמי אינה זמינה ויש להתקשר"],
       ["Halidzor Viewpoint", "תצפית אל קניון וורוטאן"],
       ["Tatev Monastery", "אחד המנזרים המרשימים בארמניה"],
-      ["צ׳ק־אין בגוריס", "View point by HarMar hotels"]
+      ["צ׳ק־אין ב־Goris", "View point by HarMar hotels"]
     ], map: "Tatev Monastery Armenia"
   },
   {
     day: 7, weekday: "שני", date: "12.10", title: "כפרי מערות וארץ היין",
-    subtitle: "חוזרים לירוואן דרך חנדזורסק, נוראוונק ועמק ארני.", city: "ירוואן",
+    subtitle: "חוזרים ל־Yerevan דרך Old Khndzoresk, Noravank ועמק Areni.", city: "Yerevan",
     drive: "כ־6 שעות נהיגה", duration: "כ־11 שעות עם עצירות", directions: "https://www.google.com/maps/dir/?api=1&origin=Goris&destination=Yerevan&waypoints=Khndzoresk+Swinging+Bridge%7CNoravank+Monastery%7CAreni%7CKhor+Virap&travelmode=driving", stops: [
-      ["Old Khndzoresk", "כפר המערות והגשר התלוי"],
+      ["Old Khndzoresk", "ניקח רכב 4×4 מקומי כדי לחסוך את המדרגות בדרך לכפר המערות ולגשר התלוי"],
       ["Noravank Canyon", "דרך בין מצוקי אבן אדומים"],
       ["Areni", "כפר היין · אפשר לתאם טעימה ביקב"],
       ["Khor Virap", "תצפית איקונית אל הר אררט"],
-      ["צ׳ק־אין בירוואן", "Azoyan Guest House · הלילה האחרון"]
+      ["צ׳ק־אין ב־Yerevan", "Azoyan Guest House · הלילה האחרון"]
     ], map: "Khor Virap Armenia"
   },
   {
     day: 8, weekday: "שלישי", date: "13.10", title: "חוזרים הביתה",
-    subtitle: "יציאה מוקדמת לשדה, קונקשן בלרנקה ונחיתה אחר הצהריים.", city: "תל אביב",
+    subtitle: "יציאה מוקדמת לשדה, קונקשן ב־Larnaca ונחיתה אחר הצהריים.", city: "Tel Aviv",
     drive: "כ־20 דקות לשדה", duration: "יום טיסות", directions: "https://www.google.com/maps/dir/?api=1&origin=Azoyan+Guest+House&destination=Zvartnots+International+Airport&travelmode=driving", stops: [
       ["יציאה לשדה התעופה", "טיסת 3F 871 יוצאת ב־09:10 · מומלץ להגיע מוקדם"],
-      ["ירוואן → לרנקה", "09:10–10:00 · 3F 871 · מאושר"],
-      ["המתנה בלרנקה", "זמן טוב לארוחה לפני הטיסה האחרונה"],
-      ["לרנקה → תל אביב", "15:20–16:25"]
+      ["Yerevan → Larnaca", "09:10–10:00 · 3F 871 · מאושר"],
+      ["המתנה ב־Larnaca", "זמן טוב לארוחה לפני הטיסה האחרונה"],
+      ["Larnaca → Tel Aviv", "15:20–16:25"]
     ], map: "Zvartnots International Airport"
   }
 ];
 
 const hotels = [
-  { name: "Hin Yerevantsi Hotel", city: "ירוואן", dates: "6–9 באוקטובר", nights: "3 לילות", price: 1539 },
-  { name: "Amrots Dsegheni · Boutique Castle Stay", city: "דיליג׳אן", dates: "9–10 באוקטובר", nights: "לילה אחד", price: 295 },
-  { name: "Cherry Garden Boutique Hotel", city: "יגגנאדזור", dates: "10–11 באוקטובר", nights: "לילה אחד", price: 210 },
-  { name: "View point by HarMar hotels", city: "גוריס", dates: "11–12 באוקטובר", nights: "לילה אחד", price: 166 },
-  { name: "Azoyan Guest House", city: "ירוואן", dates: "12–13 באוקטובר", nights: "לילה אחד", price: 289 }
+  { name: "Hin Yerevantsi Hotel", city: "Yerevan", dates: "6–9 באוקטובר", nights: "3 לילות", price: 1539 },
+  { name: "Amrots Dsegheni · Boutique Castle Stay", city: "Dilijan", dates: "9–10 באוקטובר", nights: "לילה אחד", price: 295 },
+  { name: "Cherry Garden Boutique Hotel", city: "Yeghegnadzor", dates: "10–11 באוקטובר", nights: "לילה אחד", price: 210 },
+  { name: "View point by HarMar hotels", city: "Goris", dates: "11–12 באוקטובר", nights: "לילה אחד", price: 166 },
+  { name: "Azoyan Guest House", city: "Yerevan", dates: "12–13 באוקטובר", nights: "לילה אחד", price: 289 }
 ];
 
 const itineraryWeatherLocations = {
-  yerevan: { city: "ירוואן", lat: 40.1872, lon: 44.5152, estimate: "11°–22°" },
-  garni: { city: "גארני וגגהארד", lat: 40.1124, lon: 44.7279, estimate: "8°–19°" },
-  echmiadzin: { city: "אצ׳מיאדזין", lat: 40.1656, lon: 44.2946, estimate: "10°–21°" },
-  sevan: { city: "אגם סוואן", lat: 40.5472, lon: 44.9417, estimate: "5°–14°" },
-  dilijan: { city: "דיליג׳אן", lat: 40.7408, lon: 44.8636, estimate: "7°–16°" },
-  selim: { city: "מעבר סלים", lat: 39.9496, lon: 45.2355, estimate: "2°–11°" },
-  yeghegnadzor: { city: "יגגנאדזור", lat: 39.7639, lon: 45.3324, estimate: "8°–20°" },
-  shaki: { city: "מפל שאקי", lat: 39.5522, lon: 45.9934, estimate: "7°–18°" },
-  tatev: { city: "טאטב", lat: 39.3833, lon: 46.25, estimate: "5°–15°" },
-  goris: { city: "גוריס", lat: 39.5078, lon: 46.3387, estimate: "5°–16°" },
-  areni: { city: "ארני ונוראוונק", lat: 39.7194, lon: 45.1838, estimate: "8°–20°" },
-  khorVirap: { city: "חור ויראפ", lat: 39.8783, lon: 44.5762, estimate: "10°–22°" },
-  telAviv: { city: "תל אביב", lat: 32.0853, lon: 34.7818, estimate: "21°–29°" }
+  yerevan: { city: "Yerevan", lat: 40.1872, lon: 44.5152, estimate: "11°–22°" },
+  garni: { city: "Garni & Geghard", lat: 40.1124, lon: 44.7279, estimate: "8°–19°" },
+  echmiadzin: { city: "Etchmiadzin", lat: 40.1656, lon: 44.2946, estimate: "10°–21°" },
+  sevan: { city: "Lake Sevan", lat: 40.5472, lon: 44.9417, estimate: "5°–14°" },
+  dilijan: { city: "Dilijan", lat: 40.7408, lon: 44.8636, estimate: "7°–16°" },
+  selim: { city: "Selim Pass", lat: 39.9496, lon: 45.2355, estimate: "2°–11°" },
+  yeghegnadzor: { city: "Yeghegnadzor", lat: 39.7639, lon: 45.3324, estimate: "8°–20°" },
+  shaki: { city: "Shaki Waterfall", lat: 39.5522, lon: 45.9934, estimate: "7°–18°" },
+  tatev: { city: "Tatev", lat: 39.3833, lon: 46.25, estimate: "5°–15°" },
+  goris: { city: "Goris", lat: 39.5078, lon: 46.3387, estimate: "5°–16°" },
+  areni: { city: "Areni & Noravank", lat: 39.7194, lon: 45.1838, estimate: "8°–20°" },
+  khorVirap: { city: "Khor Virap", lat: 39.8783, lon: 44.5762, estimate: "10°–22°" },
+  telAviv: { city: "Tel Aviv", lat: 32.0853, lon: 34.7818, estimate: "21°–29°" }
 };
 
 const itineraryWeatherStops = {
@@ -182,8 +182,8 @@ const checklist = [
   ["לרכוש ביטוח נסיעות", "כולל ביטול, מטען ופעילות מתוכננת"],
   ["להזמין Wings of Tatev", "לבדוק ימי פעילות ושעות באוקטובר"],
   ["לבדוק תנאי ביטול מלונות", "ההזמנות מסומנות עם ביטול חינם"],
-  ["להוריד מפות לשימוש לא מקוון", "ירוואן, סוואן, ויוטס דזור וסיוניק"],
-  ["לבדוק מזג אוויר 5 ימים לפני", "במיוחד מעבר סלים, טאטב וגוריס"]
+  ["להוריד מפות לשימוש לא מקוון", "Yerevan, Lake Sevan, Vayots Dzor ו־Syunik"],
+  ["לבדוק מזג אוויר 5 ימים לפני", "במיוחד Selim Pass, Tatev ו־Goris"]
 ];
 
 const tabs = document.querySelector(".day-tabs");
@@ -272,18 +272,85 @@ const nav = document.querySelector("#main-nav");
 menuButton.addEventListener("click", () => {
   const isOpen = nav.classList.toggle("open");
   menuButton.setAttribute("aria-expanded", isOpen);
+  menuButton.setAttribute("aria-label", isOpen ? "סגירת תפריט" : "פתיחת תפריט");
 });
 nav.querySelectorAll("a").forEach(link => link.addEventListener("click", () => {
   nav.classList.remove("open");
   menuButton.setAttribute("aria-expanded", "false");
+  menuButton.setAttribute("aria-label", "פתיחת תפריט");
 }));
 
+const currencyInputs = [...document.querySelectorAll("[data-currency]")];
+const currencyStatus = document.querySelector("#currency-status");
+const currencyRatesLabel = document.querySelector("#currency-rates");
+let currencyRates = null;
+
+function parseCurrencyValue(value) {
+  return Number(String(value).replace(/,/g, "").trim());
+}
+
+function formatCurrencyValue(value, code) {
+  if (!Number.isFinite(value)) return "";
+  return new Intl.NumberFormat("he-IL", { maximumFractionDigits: code === "AMD" ? 0 : 2 }).format(value);
+}
+
+function convertCurrencies(sourceInput) {
+  if (!currencyRates) return;
+  const amount = parseCurrencyValue(sourceInput.value);
+  if (!Number.isFinite(amount)) {
+    currencyInputs.filter(input => input !== sourceInput).forEach(input => { input.value = ""; });
+    return;
+  }
+  const amountInAmd = amount / currencyRates[sourceInput.dataset.currency];
+  currencyInputs.forEach(input => {
+    if (input === sourceInput) return;
+    const code = input.dataset.currency;
+    input.value = formatCurrencyValue(amountInAmd * currencyRates[code], code);
+  });
+}
+
+function applyCurrencyRates(payload, cached = false) {
+  const ils = payload?.rates?.ILS;
+  const usd = payload?.rates?.USD;
+  if (!Number.isFinite(ils) || !Number.isFinite(usd)) return false;
+  currencyRates = { AMD: 1, ILS: ils, USD: usd };
+  currencyInputs.forEach(input => { input.disabled = false; });
+  const updatedAt = payload.time_last_update_unix ? new Date(payload.time_last_update_unix * 1000).toLocaleString("he-IL", { day: "numeric", month: "numeric", hour: "2-digit", minute: "2-digit" }) : "לא ידוע";
+  currencyStatus.textContent = `${cached ? "שער שמור" : "עודכן"} · ${updatedAt}`;
+  currencyRatesLabel.textContent = `1,000 AMD = ₪${(1000 * ils).toFixed(2)} · $${(1000 * usd).toFixed(2)} · ₪1 = ${Math.round(1 / ils)} AMD · $1 = ${Math.round(1 / usd)} AMD`;
+  convertCurrencies(document.querySelector("#currency-amd"));
+  return true;
+}
+
+currencyInputs.forEach(input => {
+  input.disabled = true;
+  input.addEventListener("input", () => convertCurrencies(input));
+});
+
+async function loadCurrencyRates() {
+  try {
+    const response = await fetch("https://open.er-api.com/v6/latest/AMD");
+    if (!response.ok) throw new Error("rates unavailable");
+    const payload = await response.json();
+    if (!applyCurrencyRates(payload)) throw new Error("invalid rates");
+    localStorage.setItem("armenia-currency-rates", JSON.stringify(payload));
+  } catch {
+    const savedRates = JSON.parse(localStorage.getItem("armenia-currency-rates") || "null");
+    if (!applyCurrencyRates(savedRates, true)) {
+      currencyStatus.textContent = "השערים אינם זמינים כרגע";
+      currencyRatesLabel.textContent = "נסו שוב כשהחיבור יתחדש";
+    }
+  }
+}
+
+loadCurrencyRates();
+
 const weatherLocations = {
-  telAviv: { city: "תל אביב", lat: 32.0853, lon: 34.7818, estimate: "21°–29°" },
-  yerevan: { city: "ירוואן", lat: 40.1872, lon: 44.5152, estimate: "11°–22°" },
-  dilijan: { city: "דיליג׳אן", lat: 40.7408, lon: 44.8636, estimate: "7°–16°" },
-  yeghegnadzor: { city: "יגגנאדזור", lat: 39.7639, lon: 45.3324, estimate: "8°–20°" },
-  goris: { city: "גוריס", lat: 39.5078, lon: 46.3387, estimate: "5°–16°" }
+  telAviv: { city: "Tel Aviv", lat: 32.0853, lon: 34.7818, estimate: "21°–29°" },
+  yerevan: { city: "Yerevan", lat: 40.1872, lon: 44.5152, estimate: "11°–22°" },
+  dilijan: { city: "Dilijan", lat: 40.7408, lon: 44.8636, estimate: "7°–16°" },
+  yeghegnadzor: { city: "Yeghegnadzor", lat: 39.7639, lon: 45.3324, estimate: "8°–20°" },
+  goris: { city: "Goris", lat: 39.5078, lon: 46.3387, estimate: "5°–16°" }
 };
 
 const sleepLocations = {
