@@ -1,0 +1,32 @@
+{
+  "name": "המסע לארמניה 2026",
+  "short_name": "ארמניה 2026",
+  "description": "מסלול הטיול הפרטי בארמניה, 6–13 באוקטובר 2026",
+  "lang": "he",
+  "dir": "rtl",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#172b2a",
+  "theme_color": "#172b2a",
+  "icons": [
+    {
+      "src": "assets/armenia-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/armenia-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/armenia-icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
